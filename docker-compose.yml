@@ -23,6 +23,8 @@ services:
     container_name: 'adote-facil-backend'
     ports:
       - "8080:8080"
+    env_file:
+      - ./backend/.env
     environment:
       - NODE_ENV=production
     depends_on:
