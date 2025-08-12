@@ -8,22 +8,28 @@ Após analisar a estrutura do repositório, podemos concluir que a arquitetura d
 
 A comunicação entre essas duas camadas é realizada por meio de requisições de API, que são disparadas a partir das interações do usuário no frontend.
 
-diagrama de pacotes
+## Diagrama de Pacotes
+
+```mermaid
 ---
 config:
- layout: dagre
+  layout: dagre
 ---
 flowchart TD
-subgraph subGraph0["Backend Layers"]
- DB[("Banco de Dados")]
- Repositories["Repositories"]
- Services["Services"]
- Controllers["Controllers"]
- Routes["Routes"]
- end
- Usuario["Usuario"] --> Frontend["Next.js / React"]
- Frontend -- HTTP --> Backend["Express API"]
- Routes --> Controllers
- Controllers --> Services
- Services --> Repositories
- Repositories --> DB
+    subgraph Backend Layers
+        Routes
+        Controllers
+        Services
+        Repositories
+        DB[("Banco de Dados")]
+    end
+
+    Usuario["Usuário"] --> Frontend["Next.js / React"]
+    Frontend -- HTTP --> Backend["Express API"]
+
+    Backend --> Routes
+    Routes --> Controllers
+    Controllers --> Services
+    Services --> Repositories
+    Repositories --> DB
+
