@@ -2,6 +2,12 @@ import { PrismaClient } from '@prisma/client'
 import { prisma } from '../database.js'
 import { CreateChatRepositoryDTO } from './chat.dto.js'
 
+// REATORAÇÃO: Constante para evitar duplicação do objeto de seleção.
+const userSelect = {
+  id: true,
+  name: true,
+}
+
 export class ChatRepository {
   constructor(private readonly repository: PrismaClient) {}
 
@@ -34,8 +40,8 @@ export class ChatRepository {
           },
           take: 1,
         },
-        user1: { select: { id: true, name: true } },
-        user2: { select: { id: true, name: true } },
+        user1: { select: userSelect }, // REATORAÇÃO: Reutilização da constante
+        user2: { select: userSelect }, // REATORAÇÃO: Reutilização da constante
       },
     })
   }
@@ -50,8 +56,8 @@ export class ChatRepository {
         messages: {
           orderBy: { createdAt: 'asc' },
         },
-        user1: { select: { id: true, name: true } },
-        user2: { select: { id: true, name: true } },
+        user1: { select: userSelect }, // REATORAÇÃO: Reutilização da constante
+        user2: { select: userSelect }, // REATORAÇÃO: Reutilização da constante
       },
     })
   }
