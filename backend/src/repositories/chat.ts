@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client'
 import { prisma } from '../database.js'
 import { CreateChatRepositoryDTO } from './chat.dto.js'
 
-// REATORAÇÃO: Constante para evitar duplicação do objeto de seleção.
+// REFATORAÇÃO: Constante para evitar duplicação do objeto de seleção.
 const userSelect = {
   id: true,
   name: true,
